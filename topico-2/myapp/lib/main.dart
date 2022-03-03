@@ -103,7 +103,13 @@ class _RandomWordsState extends State<RandomWords> {
             appBar: AppBar(
               title: const Text('Saved Suggestions'),
             ),
-            body: ListView(children: divided),
+            //PARTE DO CÓDIGO QUE PERMITE A VISUALIZAÇÃO DAS PALAVRAS SELECIONADAS COMO CARDS E NÃO EM MODO LISTA 
+            body: GridView.builder(
+              padding: EdgeInsets.all(12),
+              gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              itemCount: _saved.length,
+              itemBuilder: (BuildContext context, i)=> Card(child: Text(_suggestions[i].asPascalCase))
+            ),
           );
         },
       ),
