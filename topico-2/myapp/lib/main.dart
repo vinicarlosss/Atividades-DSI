@@ -83,31 +83,15 @@ class _RandomWordsState extends State<RandomWords> {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (context){
-          final tiles = _saved.map(
-            (pair){
-              return ListTile(
-                title: Text(
-                  pair.asPascalCase,
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-          final divided = tiles.isNotEmpty
-          ? ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-            ).toList()
-            :<Widget>[];
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Saved Suggestions'),
+              title: const Text('Visualização em Cards'),
             ),
-            //PARTE DO CÓDIGO QUE PERMITE A VISUALIZAÇÃO DAS PALAVRAS SELECIONADAS COMO CARDS E NÃO EM MODO LISTA 
+            //PARTE DO CÓDIGO QUE PERMITE A VISUALIZAÇÃO EM MODO CARD
             body: GridView.builder(
               padding: EdgeInsets.all(12),
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemCount: _saved.length,
+              itemCount: _suggestions.length,
               itemBuilder: (BuildContext context, i)=> Card(child: Text(_suggestions[i].asPascalCase))
             ),
           );
